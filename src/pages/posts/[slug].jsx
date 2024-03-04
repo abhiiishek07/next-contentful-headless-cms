@@ -13,14 +13,10 @@ const Post = ({ post, preview }) => {
       {/* {preview && <PreviewAlert />} */}
       <div className="container w-full flex items-center justify-center">
         <article className="mx-auto w-full flex items-center justify-center">
-          {router.isFallback ? (
-            <Skeleton />
-          ) : (
-            <div className="flex flex-col items-center justify-center p-4 prose w-full ">
-              <PostHeader post={post} />
-              <PostBody post={post} />
-            </div>
-          )}
+          <div className="flex flex-col items-center justify-center p-4 prose w-full ">
+            <PostHeader post={post} />
+            <PostBody post={post} />
+          </div>
         </article>
       </div>
     </section>
