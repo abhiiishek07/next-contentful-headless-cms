@@ -2,7 +2,7 @@ import PostBody from "@/components/posts/PostBody";
 import PostHeader from "@/components/posts/PostHeader";
 // import PreviewAlert from "@/components/ui/PreviewAlert";
 // import Skeleton from "@/components/ui/Skeleton";
-import { client, previewClient } from "@/lib/contentful/client";
+import { client } from "@/lib/contentful/client";
 import { useRouter } from "next/router";
 
 const Post = ({ post, preview }) => {
