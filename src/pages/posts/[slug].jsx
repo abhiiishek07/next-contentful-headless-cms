@@ -1,7 +1,5 @@
-import PostBody from "@/components/posts/PostBody";
-import PostHeader from "@/components/posts/PostHeader";
-// import PreviewAlert from "@/components/ui/PreviewAlert";
-// import Skeleton from "@/components/ui/Skeleton";
+import PostBody from "@/components/Posts/PostBody";
+import PostHeader from "@/components/Posts/PostHeader";
 import { client } from "@/lib/contentful/client";
 import { useRouter } from "next/router";
 
