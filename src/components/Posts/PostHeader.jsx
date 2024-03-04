@@ -1,6 +1,6 @@
-import Avatar from "../ui/Avatar";
-import ContentfulImage from "../ui/ContentfulImage";
-import DateComponent from "../ui/DateComponent";
+import Avatar from "../UI/Avatar";
+import ContentfulImage from "../UI/ContentfulImage";
+import DateComponent from "../UI/DateComponent";
 
 const PostHeader = ({ post }) => {
   const { title, coverImage, author, date } = post.fields;

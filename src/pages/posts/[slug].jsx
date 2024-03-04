@@ -30,28 +30,26 @@ export const getStaticProps = async ({ params, preview = false }) => {
     "fields.slug": slug,
   });
 
-  if (!response?.items?.length) {
+  // Check if response contains items and items array is not empty
+  if (!response || !response.items || response.items.length === 0) {
     return {
-      redirect: {
-        destination: "/posts",
-        permanent: false,
-      },
+      notFound: true,
     };
   }
 
   return {
     props: {
-      post: response?.items?.[0],
+      post: response.items[0],
       preview,
-      revalidate: 60,
     },
+    revalidate: 60,
   };
 };
 
 export const getStaticPaths = async () => {
   const response = await client.getEntries({ content_type: "post" });
   const paths = response.items.map((item) => ({
-    params: { slug: item.fields.slug },
+    params: { slug: item?.fields?.slug },
   }));
 
   return {
