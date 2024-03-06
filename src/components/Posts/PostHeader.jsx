@@ -9,19 +9,19 @@ const PostHeader = ({ post }) => {
     <div>
       <h2>{title}</h2>
       <div className="hidden md:flex md:justify-between md:items-center md:mb-10">
-        <Avatar name={author.fields.name} picture={author.fields.picture} />
+        <Avatar name={author?.fields.name} picture={author?.fields.picture} />
         <DateComponent dateString={date} className="text-sm text-gray-400" />
       </div>
       <div className="mb-8 md:mb-16 sm:mx-0">
         <ContentfulImage
           alt={`Cover Image for ${title}`}
-          src={coverImage.fields.file.url}
+          src={coverImage?.fields.file.url}
           width={500}
           height={500}
         />
       </div>
       <div className="flex justify-between items-center md:hidden mb-6">
-        <Avatar name={author.fields.name} picture={author.fields.picture} />
+        <Avatar name={author?.fields.name} picture={author?.fields.picture} />
         <DateComponent dateString={date} className="text-sm text-gray-400" />
       </div>
     </div>

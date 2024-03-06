@@ -6,6 +6,13 @@ import { useRouter } from "next/router";
 const Post = ({ post, preview }) => {
   const router = useRouter();
 
+  if (!post)
+    return (
+      <div>
+        <p>Loading</p>
+      </div>
+    );
+
   return (
     <section className="section w-full ">
       {/* {preview && <PreviewAlert />} */}
@@ -21,26 +28,23 @@ const Post = ({ post, preview }) => {
   );
 };
 
-export const getStaticProps = async ({ params, preview = false }) => {
-  const cfClient = preview ? previewClient : client;
-
+export const getStaticProps = async ({ params }) => {
   const { slug } = params;
-  const response = await cfClient.getEntries({
+  console.log("slug\n", slug);
+  const response = await client.getEntries({
     content_type: "post",
     "fields.slug": slug,
   });
 
   // Check if response contains items and items array is not empty
-  if (!response || !response.items || response.items.length === 0) {
-    return {
-      notFound: true,
-    };
+  if (!response?.items?.[0]) {
+    return { notFound: true };
   }
+  console.log("posts\n", response.items[0]);
 
   return {
     props: {
       post: response.items[0],
-      preview,
     },
     revalidate: 60,
   };
@@ -48,9 +52,11 @@ export const getStaticProps = async ({ params, preview = false }) => {
 
 export const getStaticPaths = async () => {
   const response = await client.getEntries({ content_type: "post" });
+  console.log("static res\n", response.items);
   const paths = response.items.map((item) => ({
-    params: { slug: item?.fields?.slug },
+    params: { slug: item.fields.slug },
   }));
+  console.log("paths\n", paths);
 
   return {
     paths,

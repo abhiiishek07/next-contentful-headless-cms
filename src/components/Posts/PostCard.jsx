@@ -4,7 +4,7 @@ import Avatar from "../UI/Avatar";
 import DateComponent from "../UI/DateComponent";
 
 const PostCard = ({ post }) => {
-  const { title, slug, exercept, coverImage, author, date } = post.fields;
+  const { title, slug, exercept, coverImage, author, date } = post?.fields;
 
   return (
     <div className="rounded-md overflow-hidden shadow-md max-w-md">
@@ -12,9 +12,9 @@ const PostCard = ({ post }) => {
         <div className="mb-2 w-full h-96 object-contain">
           <ContentfulImage
             alt={`Cover Image for ${title}`}
-            src={coverImage.fields.file.url}
-            width={coverImage.fields.file.details.image.width}
-            height={coverImage.fields.file.details.image.height}
+            src={coverImage?.fields.file.url}
+            width={coverImage?.fields.file.details.image.width}
+            height={coverImage?.fields.file.details.image.height}
           />
         </div>
         <div className="p-4">
@@ -23,7 +23,7 @@ const PostCard = ({ post }) => {
             <DateComponent dateString={date} />
           </div>
           <p className="text-base mb-4">{exercept}</p>
-          <Avatar name={author.fields.name} picture={author.fields.picture} />
+          <Avatar name={author?.fields.name} picture={author?.fields.picture} />
         </div>
       </Link>
     </div>
